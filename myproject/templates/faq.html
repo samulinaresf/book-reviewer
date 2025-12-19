@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content%}
+        <div class="article-box">
+            <article class="box">
+                <h1>Preguntas Frecuentes (FAQ)</h1>
+                <h2>1. ¿Qué es Alejandr.IA?</h2>
+                <p>Alejandr.IA es una plataforma que, mediante una membresía mensual, te permite acceder de forma ilimitada a resúmenes de libros creados tanto por nuestros expertos como por inteligencia artificial. Nuestro objetivo es proporcionarte conocimientos rápidos y accesibles.</p>
+                <h2>2. ¿Cómo puedo registrarme en Alejandr.IA?</h2>
+                <p>Para registrarte en Alejandr.IA, sigue estos pasos:</p>
+                <ul>
+                    <li>Haz clic en el enlace de registro en la página principal.</li>
+                    <li>Completa el formulario con tu nombre completo, email, edad, nombre de usuario, contraseña y país.</li>
+                    <li>Confirma tu correo electrónico mediante el enlace que te enviaremos.</li>
+                </ul>
+                <h2>3. ¿Qué métodos de pago aceptan?</h2>
+                <p>Aceptamos los siguientes métodos de pago:</p>
+                <ul>
+                    <li>Tarjetas de crédito y débito (Visa, MasterCard, American Express).</li>
+                    <li>PayPal.</li>
+                </ul>
+                <h2>4. ¿Puedo cancelar mi membresía en cualquier momento?</h2>
+                <p>Sí, puedes cancelar tu membresía en cualquier momento desde la configuración de tu cuenta. Una vez cancelada, tendrás acceso a los resúmenes de libros hasta el final del período de facturación actual.</p>
+                <h2>5. ¿Qué sucede con mis datos personales?</h2>
+                <p>Nos tomamos muy en serio la privacidad de tus datos. Al registrarte, recopilamos información básica como tu nombre, email, edad, nombre de usuario, contraseña y país. Estos datos se utilizan exclusivamente para gestionar tu cuenta y proporcionarte acceso a nuestros servicios. Puedes leer más en nuestra <a href="{% url 'politica_privacidad' %}">Política de Privacidad</a>.</p>
+                <h2>6. ¿Puedo solicitar la eliminación de mis datos personales?</h2>
+                <p>Sí, puedes solicitar la eliminación de tus datos personales en cualquier momento contactándonos a través del correo electrónico: [tu email de contacto].</p>
+                <h2>7. ¿Ofrecen algún periodo de prueba gratuito?</h2>
+                <p>En ocasiones, ofrecemos períodos de prueba gratuitos o promociones especiales. Te recomendamos que te suscribas a nuestro boletín de noticias o que visites nuestra página regularmente para estar al tanto de estas ofertas.</p>
+                <h2>8. ¿Cómo puedo contactar con el soporte técnico?</h2>
+                <p>Si tienes alguna duda o problema técnico, puedes contactar con nuestro equipo de soporte técnico a través de la sección <a href="#">Soporte Técnico</a> en nuestra página web o enviando un correo a [tu email de soporte técnico].</p>
+                <h2>9. ¿Puedo sugerir libros para los resúmenes?</h2>
+                <p>Sí, nos encanta recibir sugerencias de nuestros usuarios. Puedes enviarnos tus recomendaciones de libros a través de la sección de contacto en nuestra página web.</p>
+                <h2>10. ¿Cómo se actualizan los resúmenes de libros?</h2>
+                <p>Actualizamos nuestra biblioteca de resúmenes de libros regularmente. Nuestro equipo de expertos y nuestra inteligencia artificial trabajan juntos para asegurarse de que siempre tengas acceso a los resúmenes más recientes y relevantes.</p>
+            </article>
+        </div>
+{% endblock %}

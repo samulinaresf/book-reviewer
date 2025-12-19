@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alejandr.ia</title>
+    <link rel="stylesheet" href="{% static 'css/static.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+</head>
+<body>
+    <!-- Creando el container central -->
+    {% block header %}
+    <div class="container">
+        <!-- Encabezado -->
+            <div class="box-container","container-img">
+                <img src="{% static 'imagenes/logo-alejandria-sin-fondo.png' %}" alt="Logo">
+            </div>
+            <div class="box-container","container-header">
+                <h1 class="titulo-principal">AlejandrIA</h1>
+            </div>
+            <div class="box-container","container-session">
+                {% if user.is_authenticated %}  
+                <ul class="session">
+                    <li><a href="{% url 'mi-perfil' %}" class="session-button">Mi cuenta</a></li>
+                    <li><form action={% url 'cerrar-sesion' %} method="post">
+                        {% csrf_token %}
+                        <button action="submit" class="session-button", "session-submit-button">Cerrar sesión</button>
+                        </form>
+                    </li>
+                </ul>
+                {% else %}
+                <ul class="sesion">
+                    <li><a href="{% url 'inicio-sesion' %}" class="session-button">Inicio sesión</a></li>
+                    <li><a href="{% url 'registro' %}" class="session-button">Registro</a></li>
+                </ul>
+                {% endif %}
+            </div>   
+    </div>
+    {% endblock %}
+    {% block menu %}
+    <!-- Menú principal de la parte derecha -->
+    {% endblock %}
+    <div class="container center">
+        <nav>
+            <ul>
+                <li><a href="{% url 'index' %}" class="inicio">Inicio </a></li>
+                <li><a href="{% url 'membresia' %}" class="membresia"> Membresía </a></li>
+                <li><a href="{% url 'resumenes' %}" class="resumenes"> Resumenes </a></li>
+            </ul>
+        </nav>
+    {% block content %}
+    <!-- Aquí va el contenido específico de cada página -->
+    {% endblock %}
+    </div>
+    <!-- Botones de RRSS -->
+    
+    
+    <!-- Pie de página -->
+     {% block footer %}
+     <div class="container footer">    
+        <footer>
+            <ul class="iconos-rrss">
+                <li class="icono-youtube"><a href="https://www.youtube.com/@alejandr.ia_"><img src="{% static 'imagenes/logo-youtube-32px.png' %}" alt="Logo de Youtube"></a></li>
+                <li class="icono-paypal"><a href="https://paypal.me/samulinaresf?country.x=ES&locale.x=es_ES"><img src="{% static 'imagenes/logo-paypal-32px.png' %}" alt="Logo de Paypal"></a></li>
+                <li class="icono-spotify"><a href="https://open.spotify.com/show/6Los0BS2h1yN8DLyBjnyht?si=890be587be9f42af"><img src="{% static 'imagenes/logo-spotify-30px.png' %}" alt="Logo de Spotify"></a></li>
+            </ul>
+        </div>
+        <div class="footer-menu">
+            <ul class="footer-text">
+                <li class="aviso-legal"><a href="{% url 'aviso_legal' %}" class="active">Aviso legal</a></li>
+                <li><a href="{% url 'politica_privacidad' %}" class="active">Política de privacidad</a></li>
+                <li><a href="{% url 'politica_cookies' %}" class="active">Política de cookies</a></li>
+                <li><a href="{% url 'faq' %}" class="active">FAQ</a></li>
+                <li><a href="{% url 'sobre_nosotros' %}" class="active">Sobre nosotros</a></li>
+                <li><a href="{% url 'contacto' %}" class="active">Contacto</a></li>
+            </ul>
+        </div>
+        <p class="copyright">copyright &copy; Samuel Linares, 2024 Todos los derechos reservados</p>
+    </footer>
+    {% endblock %}
+</body>
+</html>

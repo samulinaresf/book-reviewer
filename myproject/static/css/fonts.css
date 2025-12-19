@@ -1,0 +1,76 @@
+/* Tipografía que vamos a usar */
+
+@font-face {
+    font-family: "Lato Thin";
+    src: url(../fonts/Archivo_Black\,Kanit\,Lato/Lato-Bold.ttf);
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Lato Light";
+    src: url(../fonts/Archivo_Black\,Kanit\,Lato/Lato-Black.ttf);
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Lato Regular";
+    src: url(../fonts/Archivo_Black\,Kanit\,Lato/.lato-regular);
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Lato Thin Italic";
+    src: url(../fonts/Archivo_Black\,Kanit\,Lato/.lato-thin-italic);
+    font-weight: 100;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Lato Light Italic";
+    src: url(../fonts/Archivo_Black\,Kanit\,Lato/.lato-light-italic);
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Lato Light";
+    src: url(../fonts/Archivo_Black\,Kanit\,Lato/.lato-light);
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Lato";
+    src: url(../fonts/Archivo_Black\,Kanit\,Lato/.lato);
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Lato Bold";
+    src: url(../fonts/Archivo_Black\,Kanit\,Lato/.lato-bold);
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Lato Bold Italic";
+    src: url(../fonts/Archivo_Black\,Kanit\,Lato/.lato-bold-italic);
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "Lato Black";
+    src: url(../fonts/Archivo_Black\,Kanit\,Lato/.lato-black);
+    font-weight: 900;
+}
+
+@font-face {
+    font-family: "Lato Black Italic";
+    src: url(../fonts/Archivo_Black\,Kanit\,Lato/.lato-black-italic);
+    font-weight: 900;
+}
+  

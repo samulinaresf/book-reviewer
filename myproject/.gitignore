@@ -17,3 +17,6 @@ staticfiles/
 # Otros
 *.zip
 *.pdf
+
+# Git leftovers
+_git_backup/

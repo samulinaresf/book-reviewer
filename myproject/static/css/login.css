@@ -1,0 +1,112 @@
+/* Tipografía que vamos a usar */
+.lato-thin {
+    font-family: "Lato", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+  }
+  
+  .lato-light {
+    font-family: "Lato", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  .lato-regular {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .lato-bold {
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  .lato-black {
+    font-family: "Lato", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+  }
+  
+  .lato-thin-italic {
+    font-family: "Lato", sans-serif;
+    font-weight: 100;
+    font-style: italic;
+  }
+  
+  .lato-light-italic {
+    font-family: "Lato", sans-serif;
+    font-weight: 300;
+    font-style: italic;
+  }
+  
+  .lato-black-italic {
+    font-family: "Lato", sans-serif;
+    font-weight: 900;
+    font-style: italic;
+  }
+  
+  .lato-bold-italic {
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+  }
+  
+  .lato-regular-italic {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+  }
+body {
+    background-color: rgb(63, 59, 59);
+}
+.formulario{
+    font-family: "Lato", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    color: white;
+    display: block;
+    text-align: center;
+    
+}
+
+.titulo {
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 300%;
+    color: white;
+    text-align: center;
+  }
+
+  .form-registro{
+    text-align: center;
+}
+
+.registro{
+    text-align: center;
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    color: white;
+}
+
+.enlace-registro{
+    font-family: "Lato", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    color: rgb(211, 209, 209);
+}
+
+.box{
+  text-decoration: none;
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-style: normal; 
+  text-align: center;
+  color: hsl(0, 0%, 86%);
+  margin-left: 300px;
+  margin-right: 300px;
+  font-size: 1.5em;
+}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Cargar los templatetags estáticos -->
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alejandr.ia</title>
+    <link rel="stylesheet" href="{% static 'css/static.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <br>
+    <br>
+    <div class="box">
+        <h1 class="title-box">Mi cuenta</h1>
+        <p><strong>Nombre: </strong>{{perfil.first_name}}</p>
+        <p><strong>Apellido: </strong>{{perfil.last_name}}</p>
+        <p><strong>Usuario: </strong>{{perfil.username}}</p>
+        <p><strong>Email: </strong>{{perfil.email}}</p>
+        <br>
+        <button type="box" onclick="window.history.back()">Atrás</button>
+    </div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

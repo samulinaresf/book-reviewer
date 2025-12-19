@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content%}
+    
+<!-- Imagen y artículo -->
+    <div class="flexbox">
+        <aside class="second-navbar">
+            <h3>Categorías</h3>
+                {% if categorias %}
+                    <ul>
+                        {% for categoria in categorias %}
+                            <li class="category-item"><a class="active" href="http://127.0.0.1:8000/search/?keyword={{categoria.nombre|lower}}">{{categoria.nombre}}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No se ha encontrado ninguna categoría</p>
+                {% endif %}
+        </aside>
+        <main>
+            <h1>AlejandrIA</h1>
+            <!---->
+            <!--<img src="{% static 'imagenes/alejandria-robots.png' %}" title="Robots en Alejandría" alt="Imagen de robots en Alejandría">-->    
+            <form class="form-busqueda" action="{% url 'busqueda' %}" method="get">
+                <input type="text" class="cuadro-texto" name="keyword" placeholder="Buscar resumen">
+                <button type="submit">Buscar</button>
+            </form>
+            <p class="form-message">{{libros_count}} resultados</p>
+            <div class="main__items">
+                {% if libros %}
+                    {% for libro in libros %}
+                        <div class="book-miniature">
+                            <p>{{ libro.titulo }}</p>
+                            <p>{{ libro.id_autor.nombre }}</p>
+                            <p>{{ libro.id_categoria.nombre }}</p>
+                            <p class="book-summary">{{libro.resumen}}</p>
+                            <button class="book-summary-button" onclick="mostrar_resumen(this)">Descripción ⌵</button>
+                            <div class="book-review">
+                                <div class="book-review__star {% if libro.valoracion >= 1 %}active{% else %}inactive{% endif %}"><img src="{% static 'imagenes/estrella-amarilla.png' %}" alt="Estrella sin puntuación"></div>
+                                <div class="book-review__star {% if libro.valoracion >= 2 %}active{% else %}inactive{% endif %}"><img src="{% static 'imagenes/estrella-amarilla.png' %}" alt="Estrella sin puntuación"></div>
+                                <div class="book-review__star {% if libro.valoracion >= 3 %}active{% else %}inactive{% endif %}"><img src="{% static 'imagenes/estrella-amarilla.png' %}" alt="Estrella sin puntuación"></div>
+                                <div class="book-review__star {% if libro.valoracion >= 4 %}active{% else %}inactive{% endif %}"><img src="{% static 'imagenes/estrella-amarilla.png' %}" alt="Estrella sin puntuación"></div>
+                                <div class="book-review__star {% if libro.valoracion == 5 %}active{% else %}inactive{% endif %}"><img src="{% static 'imagenes/estrella-amarilla.png' %}" alt="Estrella sin puntuación"></div>
+                                <div class="book-review__star {% if libro.valoracion < 1 %}active{% else %}inactive{% endif %}"><img src="{% static 'imagenes/estrella-blanca.png' %}" alt="Estrella sin puntuación"></div>
+                                <div class="book-review__star {% if libro.valoracion < 2 %}active{% else %}inactive{% endif %}"><img src="{% static 'imagenes/estrella-blanca.png' %}" alt="Estrella sin puntuación"></div>
+                                <div class="book-review__star {% if libro.valoracion < 3 %}active{% else %}inactive{% endif %}"><img src="{% static 'imagenes/estrella-blanca.png' %}" alt="Estrella sin puntuación"></div>
+                                <div class="book-review__star {% if libro.valoracion < 4 %}active{% else %}inactive{% endif %}"><img src="{% static 'imagenes/estrella-blanca.png' %}" alt="Estrella sin puntuación"></div>
+                                <div class="book-review__star {% if libro.valoracion < 5 %}active{% else %}inactive{% endif %}"><img src="{% static 'imagenes/estrella-blanca.png' %}" alt="Estrella sin puntuación"></div>
+                            </div>
+                            <p>Deja tu reseña:</p>
+                            <form action="{% url 'puntuar' libro.id 1 %}" method="post">
+                                {% csrf_token %}
+                                <button class="1-star" type=submit>1 <img src="{% static 'imagenes/estrella-amarilla.png' %}"></button>
+                            </form>
+                            <form action="{% url 'puntuar' libro.id 2 %}" method="post">
+                                {% csrf_token %}
+                                <button class="2-star" type=submit>2 <img src="{% static 'imagenes/estrella-amarilla.png' %}"></button>
+                            </form>
+                            <form action="{% url 'puntuar' libro.id 3 %}" method="post">
+                                {% csrf_token %}
+                                <button class="3-star" type=submit>3 <img src="{% static 'imagenes/estrella-amarilla.png' %}"></button>
+                            </form>
+                            <form action="{% url 'puntuar' libro.id 4 %}" method="post">
+                                {% csrf_token %}
+                                <button class="4-star" type=submit>4 <img src="{% static 'imagenes/estrella-amarilla.png' %}"></button>
+                            </form>
+                            <form action="{% url 'puntuar' libro.id 5 %}" method="post">
+                                {% csrf_token %}
+                                <button class="5-star" type=submit>5 <img src="{% static 'imagenes/estrella-amarilla.png' %}"></button><br>
+                            </form>
+                            <a class="book-link" href={{ libro.link }}>Cómpralo aquí</a>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div>
+                        <p>No se ha encontrado ningún resultado.</p>
+                    </div>
+                {% endif %}
+            </div>
+            {% if libros.has_other_pages %}
+                <ul class="page-items">
+                    {% if libros.has_previous %}
+                        <li class="page-item"><a class="page-link" href="?page={{libros.previous_page_number}}">Anterior</a></li>
+                    {% else %}
+                        <li class="page-item disabled"><a class="page-link" href="#">Anterior</a></li>
+                    {% endif %}
+                
+            
+                    {% for i in libros.paginator.page_range %}
+                        {% if libros.number == i %}
+                            <li class="page-item active"><a class="page-link" href="#">{{i}}</a></li>
+                        {% else %}
+                            <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+                        {% endif %}
+                    {% endfor %}
+            
+                    {% if libros.has_next %}
+                        <li class="page-item"><a class="page-link" href="?page={{libros.next_page_number}}">Siguiente</a></li>
+                    {% else %}
+                        <li class="page-item disabled"><a class="page-link" href="#">Siguiente</a></li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+        </main>
+    
+           
+    </div>
+{% endblock %}

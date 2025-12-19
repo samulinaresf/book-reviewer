@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content%}
+        <div class="lista-de-libros">
+            <h1>Es una prueba</h1><br>
+            <p>Se han encontrado <b>{{libros_count}} resultados.</b></p>
+            <ul>
+                {% for libro in libros %}
+                    <li>
+                        <div class="book-miniature">
+                            <p>{{ libro.titulo }}</p>
+                            <p>{{ libro.id_autor.nombre }}</p>
+                            <a href={{ libro.link }}>link</a>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+            {% if libros.has_other_pages %}
+            <ul class="page-items">
+            {% if libros.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{libros.previous_page_number}}">Anterior</a></li>
+            {% else %}
+                <li class="page-item disabled"><a class="page-link" href="#">Anterior</a></li>
+            {% endif %}
+    
+            {% for i in libros.paginator.page_range %}
+                {% if libros.number == i %}
+                    <li class="page-item active"><a class="page-link" href="#">{{i}}</a></li>
+                {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+                {% endif %}
+            {% endfor %}
+    
+            {% if libros.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{libros.next_page_number}}">Siguiente</a></li>
+            {% else %}
+                <li class="page-item disabled"><a class="page-link" href="#">Siguiente</a></li>
+            {% endif %}
+            </ul>
+        {% endif %}
+        </div>
+{% endblock %}

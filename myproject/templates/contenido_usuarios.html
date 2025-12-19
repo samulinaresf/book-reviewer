@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<!-- Imagen y artículo -->
+<div>
+    <br>
+    <img class="imagen-alejandria" src="{% static 'imagenes/alejandria-robots.png' %}" alt="Imagen de robots en Alejandría">
+    <br>
+    <br>
+    <article class="box">
+        La duración necesaria para leer un libro de entre 200 y 300 páginas 
+        puede variar considerablemente dependiendo de la velocidad de lectura de cada persona. 
+        En promedio, una persona tarda entre 6 y 10 horas para completar un libro de esta 
+        longitud, asumiendo una velocidad de lectura de 200 a 300 palabras por minuto. 
+        Sin embargo, este tiempo puede ser significativamente reducido si en vez de destinar
+        10 horas destinas 10 minutos.
+    </article>
+    <br>
+</div>
+
+<!-- Libros conocidos -->
+<div>
+    <br>
+    <h2 class="algunos-libros">Algunos de los libros más conocidos</h2>
+    <ul class="libros-de-ejemplo">
+        <li class="libro1"><img src="{% static 'imagenes/3.png' %}" alt="Ejemplo 1"></li>
+        <li class="libro2"><img src="{% static 'imagenes/4.png' %}" alt="Ejemplo 2"></li>
+        <li class="libro3"><img src="{% static 'imagenes/8.png' %}" alt="Ejemplo 3"></li>
+    </ul>
+</div>
+
+<!-- Algunos testimonios -->
+<div>
+    <br>
+    <h2 class="testimonios">Algunos testimonios</h2>
+    <ul class="testimonios-de-ejemplo">
+        <li class="testimonio1"><img src="{% static 'imagenes/testimonio1.jpeg' %}" alt="Testimonio 1"></li>
+        <li class="testimonio2"><img src="{% static 'imagenes/testimonio2.jpeg' %}" alt="Testimonio 2"></li>
+    </ul>
+</div>
+
+<!-- Rincon infantil -->
+<div class="espacio-rincon-infantil">
+    <br>
+    <br>
+    <h2 class="titulo-rincon-infantil">Descubre nuestro rincón infantil</h2>
+    <br>
+    <br>
+    <article class="articulo-rincon-infantil">Un espacio de resúmenes de libros adaptados para los más pequeños de la casa</article>
+    <br>
+    <br>
+    <img class="imagen-rincon-infantil" src="{% static 'imagenes/rincon-infantil.png' %}" alt="Imagen del rincón infantil">
+</div>
+
+<!-- Botón de unirse a la membresía -->
+<div>
+    <br>
+    <h2><a href="{% url 'membresia' %}" class="boton-suscribirse">Únete a la membresía</a></h2>
+    <br>
+</div>
+{% endblock %}

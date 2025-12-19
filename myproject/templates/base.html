@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlejandrIA</title>
+    <link rel="stylesheet" href="{% static 'css/static.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+</head>
+<body>
+    <!-- Container del encabezado -->
+    {% block header %}
+    <header>
+        <!-- Logotipo 
+        <div class="logo"> 
+            <a href="{% url 'index' %}"><img src="{% static 'imagenes/logo-alejandria.png' %}" alt="Logo" title="Logo"></a>
+        </div>-->
+
+        <!-- Menú principal -->
+        <nav class="main-navbar">
+            <ul>
+                <li><a class="active" href="{% url 'index' %}">Inicio</a></li>
+                {% if user.is_authenticated %}
+                    <li><a class="active" href="{% url 'mi-perfil' %}" class="session-button">Cuenta</a></li>
+                    <li>
+                        <form action={% url 'cerrar-sesion' %} method="post">
+                        {% csrf_token %}
+                        <button action="submit" class="submit-button">Logout</button></form>
+                    </li>
+                {% else %}
+                    <li><a href="{% url 'inicio-sesion' %}" class="active">Login</a><li>
+                    <li><a href="{% url 'registro' %}" class="active">Registro</a></li>
+                {% endif %}
+            </ul>
+        </nav>   
+    </header>
+    {% endblock %}
+
+
+    <!-- Aquí va el contenido específico de cada página -->
+    {% block content %}
+    {% endblock %}
+
+    <!-- Pie de página -->
+     {% block footer %}
+     <footer>
+        <div class="footer-navbar footer-navbar--item1">
+            <ul>
+                <li><a href="https://www.youtube.com/@alejandr.ia_"><img src="{% static 'imagenes/logo-youtube-32px.png' %}" alt="Logo de Youtube"></a></li>
+                <li><a href="https://buymeacoffee.com/samli"><img src="{% static 'imagenes/buymeacoffee-32px.png' %}" alt="Logo de Buy me a coffee"></a></li>
+                <li><a href="https://open.spotify.com/show/6Los0BS2h1yN8DLyBjnyht?si=890be587be9f42af"><img src="{% static 'imagenes/logo-spotify-30px.png' %}" alt="Logo de Spotify"></a></li>
+            </ul>
+        </div>
+        <div class="footer-navbar footer-navbar--item2">
+            <ul>    
+                <li><a href="{% url 'aviso_legal' %}" class="menu--item active">Aviso legal</a></li>
+                <li><a href="{% url 'politica_privacidad' %}" class="menu--item active">Política de privacidad</a></li>
+                <li><a href="{% url 'politica_cookies' %}" class="menu--item active">Política de cookies</a></li>
+                <li><a href="{% url 'faq' %}" class="menu--item active">FAQ</a></li>
+                <li><a href="{% url 'sobre_nosotros' %}" class="menu--item active">Sobre nosotros</a></li>
+                <li><a href="{% url 'contacto' %}" class="menu--item active">Contacto</a></li>
+            </ul>
+        </div>
+        <p class="copyright">copyright &copy; Samuel Linares, 2025 </p>
+    </footer>
+    {% endblock %}
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
