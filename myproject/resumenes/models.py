@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 # Creando los modelos
 
@@ -27,7 +28,7 @@ class Libro(models.Model):
     slug = models.SlugField(max_length=100)
     id_autor = models.ForeignKey(Autor, db_column="id_autor", on_delete=models.CASCADE,related_name="libros_por_autor",default=1)
     id_categoria = models.ForeignKey(Categoria, db_column="id_categoria", on_delete=models.CASCADE,related_name="libros_por_categoria",default=1)
-    fecha = models.DateField(default='2025-12-07')
+    fecha = models.DateField(default=timezone.now())
     link = models.URLField(blank=True)
     num_valoraciones = models.IntegerField(default=0)
     num_estrellas = models.IntegerField(default=0)
