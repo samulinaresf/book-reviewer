@@ -6,4 +6,6 @@ urlpatterns = [
     path('', views.mostrar_resumenes, name='index'),
     path('search/', views.busqueda_producto, name="busqueda"),
     path('review/<int:libro_id>/<int:x>/', views.puntuar_libro, name="puntuar"),
+    path('buscar/', views.search, name="search_books"),
 ]
+

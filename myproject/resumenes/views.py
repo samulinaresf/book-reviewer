@@ -3,6 +3,7 @@ from resumenes.models import Libro, Categoria, Autor
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
+from servicios.google_books import search_books
  
 def mostrar_resumenes(request):
     libros = Libro.objects.filter()
@@ -55,6 +56,22 @@ def puntuar_libro(request,libro_id,x):
         print("Valoración:",libro.valoracion)
         return redirect(mostrar_resumenes)
     return redirect(mostrar_resumenes)
+
+def search(request):
+
+    query = request.GET.get("q")
+    books = []
+    if query:
+        data = search_books(query)
+        books = data.get("items", [])
+    return render(
+        request,
+        "books/search_results.html",
+        {
+            "books": books,
+            "query": query,
+        }
+    )
 
 
 
