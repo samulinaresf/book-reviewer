@@ -1,19 +1,6 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <!-- Cargar los templatetags estáticos -->
-    {% load static %}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alejandr.ia</title>
-    <link rel="stylesheet" href="{% static 'css/static.css' %}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
-</head>
-<body>
-    <br>
-    <br>
+{% extends "base.html" %}
+{% load static %}
+{% block content%}
     <div class="box">
         <h1 class="title-box">Mi cuenta</h1>
         <p><strong>Nombre: </strong>{{perfil.first_name}}</p>
@@ -21,8 +8,101 @@
         <p><strong>Usuario: </strong>{{perfil.username}}</p>
         <p><strong>Email: </strong>{{perfil.email}}</p>
         <br>
-        <button type="box" onclick="window.history.back()">Atrás</button>
+        
+<!-- Imagen y artículo -->
+    <div class="flexbox">
+        <main>
+            <h1>Favoritos</h1>
+            <div class="main__items">
+                {% if favoritos %}
+                    {% for libro in favoritos %}
+                        <div class="book-miniature">
+                            <p>{{ libro.libro.titulo }}</p>
+                            <p>
+                                {% for autor in libro.libro.autores.all %}
+                                    {{ autor.nombre }}{% if not forloop.last %}, {% endif %}
+                                {% endfor %}
+                            </p>
+
+                            <p>
+                                {% for categoria in libro.libro.categorias.all %}
+                                    {{ categoria.nombre }}{% if not forloop.last %}, {% endif %}
+                                {% endfor %}
+                            </p>
+
+                            <p class="book-summary">
+                                {{ libro.libro.descripcion }}
+                            </p>
+                                    <button class="book-summary-button" onclick="mostrar_resumen(this)">Descripción ⌵</button>
+                                    <div class="book-review">
+                                        <div class="book-review__star {% if libro.libro.valoracion >= 1 %}active{% else %}inactive{% endif %}"><img src="{% static 'imagenes/estrella-amarilla.png' %}" alt="Estrella sin puntuación"></div>
+                                        <div class="book-review__star {% if libro.libro.valoracion >= 2 %}active{% else %}inactive{% endif %}"><img src="{% static 'imagenes/estrella-amarilla.png' %}" alt="Estrella sin puntuación"></div>
+                                        <div class="book-review__star {% if libro.libro.valoracion >= 3 %}active{% else %}inactive{% endif %}"><img src="{% static 'imagenes/estrella-amarilla.png' %}" alt="Estrella sin puntuación"></div>
+                                        <div class="book-review__star {% if libro.libro.valoracion >= 4 %}active{% else %}inactive{% endif %}"><img src="{% static 'imagenes/estrella-amarilla.png' %}" alt="Estrella sin puntuación"></div>
+                                        <div class="book-review__star {% if libro.libro.valoracion == 5 %}active{% else %}inactive{% endif %}"><img src="{% static 'imagenes/estrella-amarilla.png' %}" alt="Estrella sin puntuación"></div>
+                                        <div class="book-review__star {% if libro.libro.valoracion < 1 %}active{% else %}inactive{% endif %}"><img src="{% static 'imagenes/estrella-blanca.png' %}" alt="Estrella sin puntuación"></div>
+                                        <div class="book-review__star {% if libro.libro.valoracion < 2 %}active{% else %}inactive{% endif %}"><img src="{% static 'imagenes/estrella-blanca.png' %}" alt="Estrella sin puntuación"></div>
+                                        <div class="book-review__star {% if libro.libro.valoracion < 3 %}active{% else %}inactive{% endif %}"><img src="{% static 'imagenes/estrella-blanca.png' %}" alt="Estrella sin puntuación"></div>
+                                        <div class="book-review__star {% if libro.libro.valoracion < 4 %}active{% else %}inactive{% endif %}"><img src="{% static 'imagenes/estrella-blanca.png' %}" alt="Estrella sin puntuación"></div>
+                                        <div class="book-review__star {% if libro.libro.valoracion < 5 %}active{% else %}inactive{% endif %}"><img src="{% static 'imagenes/estrella-blanca.png' %}" alt="Estrella sin puntuación"></div>
+                                    </div>
+                                    <p>Deja tu reseña:</p>
+                                    <form action="{% url 'puntuar' libro.libro.id 1 %}" method="post">
+                                        {% csrf_token %}
+                                        <button class="1-star" type=submit>1 <img src="{% static 'imagenes/estrella-amarilla.png' %}"></button>
+                                    </form>
+                                    <form action="{% url 'puntuar' libro.libro.id 2 %}" method="post">
+                                        {% csrf_token %}
+                                        <button class="2-star" type=submit>2 <img src="{% static 'imagenes/estrella-amarilla.png' %}"></button>
+                                    </form>
+                                    <form action="{% url 'puntuar' libro.libro.id 3 %}" method="post">
+                                        {% csrf_token %}
+                                        <button class="3-star" type=submit>3 <img src="{% static 'imagenes/estrella-amarilla.png' %}"></button>
+                                    </form>
+                                    <form action="{% url 'puntuar' libro.libro.id 4 %}" method="post">
+                                        {% csrf_token %}
+                                        <button class="4-star" type=submit>4 <img src="{% static 'imagenes/estrella-amarilla.png' %}"></button>
+                                    </form>
+                                    <form action="{% url 'puntuar' libro.libro.id 5 %}" method="post">
+                                        {% csrf_token %}
+                                        <button class="5-star" type=submit>5 <img src="{% static 'imagenes/estrella-amarilla.png' %}"></button><br>
+                                    </form>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <div>
+                                <p>No se ha encontrado ningún resultado.</p>
+                            </div>
+                        {% endif %}
+                    </div>
+                    {% if favoritos.has_other_pages %}
+                        <ul class="page-items">
+                            {% if favoritos.has_previous %}
+                                <li class="page-item"><a class="page-link" href="?page={{favoritos.previous_page_number}}">Anterior</a></li>
+                            {% else %}
+                                <li class="page-item disabled"><a class="page-link" href="#">Anterior</a></li>
+                            {% endif %}
+                        
+                    
+                            {% for i in favoritos.paginator.page_range %}
+                                {% if favoritos.number == i %}
+                                    <li class="page-item active"><a class="page-link" href="#">{{i}}</a></li>
+                                {% else %}
+                                    <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                    
+                            {% if favoritos.has_next %}
+                                <li class="page-item"><a class="page-link" href="?page={{favoritos.next_page_number}}">Siguiente</a></li>
+                            {% else %}
+                                <li class="page-item disabled"><a class="page-link" href="#">Siguiente</a></li>
+                            {% endif %}
+                        </ul>
+                    {% endif %}
+                </main>
+            </div>
+            <button type="button" onclick="window.history.back()">Atrás</button>
     </div>
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-</body>
-</html>
+{% endblock %}
+        

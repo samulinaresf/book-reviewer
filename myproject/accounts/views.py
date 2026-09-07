@@ -18,7 +18,7 @@ def registro(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Tu cuenta ha sido creada exitosamente")
-            return redirect('inicio')
+            return redirect('index')
         else:
              messages.error(request, "No ha sido posible crear la cuenta")
     else:
